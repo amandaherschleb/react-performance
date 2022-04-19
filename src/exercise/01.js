@@ -3,8 +3,8 @@
 
 import * as React from 'react'
 
-const loadGlobe = () => import('../globe');
-const Globe = React.lazy(loadGlobe); // default export will be rendered and should be a React component
+// after loading everything, prefetch this resource:
+const Globe = React.lazy(() => import(/* webpackPrefetch: true */ '../globe')); // default export will be rendered and should be a React component
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         padding: '2rem',
       }}
     >
-      <label style={{marginBottom: '1rem'}} onMouseEnter={loadGlobe} onFocus={loadGlobe}>
+      <label style={{marginBottom: '1rem'}}>
         <input
           type="checkbox"
           checked={showGlobe}
